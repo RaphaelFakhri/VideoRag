@@ -4,3 +4,7 @@ __pycache__/
 # Ignore environment folders
 embedenv/
 ragenv/
+
+# Ignore large media files
+input/Audio_16khz.wav
+input/Video.mp4
