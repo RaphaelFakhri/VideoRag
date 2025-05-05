@@ -1,0 +1,317 @@
+[
+  {
+    "timestamp": 0.68,
+    "frame_path": "keyframes/frame_0.7.jpg",
+    "transcript_text": ""
+  },
+  {
+    "timestamp": 60.0,
+    "frame_path": "keyframes/frame_60.0.jpg",
+    "transcript_text": "knew about them before we started working on this project, what we managed to discover, and the tons of questions that remain to be answered."
+  },
+  {
+    "timestamp": 120.0,
+    "frame_path": "keyframes/frame_120.0.jpg",
+    "transcript_text": "introduction to combinatorial reconfiguration because i know many of you might not have seen such problems. then i will talk."
+  },
+  {
+    "timestamp": 180.0,
+    "frame_path": "keyframes/frame_180.0.jpg",
+    "transcript_text": "either in the chat or by unmuting yourselves. so don't worry about leaving the questions till the end. you can interrupt me whenever."
+  },
+  {
+    "timestamp": 240.0,
+    "frame_path": "keyframes/frame_240.0.jpg",
+    "transcript_text": "is that 14 and 15 are reversed? but the only moves that you're allowed to do is to basically move a number into the empty square."
+  },
+  {
+    "timestamp": 300.0,
+    "frame_path": "keyframes/frame_300.0.jpg",
+    "transcript_text": "puzzle. so, what does that graph consist of? well, we have one vertex or one node in this graph for each possible configuration."
+  },
+  {
+    "timestamp": 360.0,
+    "frame_path": "keyframes/frame_360.0.jpg",
+    "transcript_text": "the graph. okay, and we call this whole graph the reconfiguration graph or the state space, if you're more comfortable thinking about states, the states of."
+  },
+  {
+    "timestamp": 420.0,
+    "frame_path": "keyframes/frame_420.0.jpg",
+    "transcript_text": "other state by a sequence of legal moves. and as i told you before, for the 15 puzzle, the reconfiguration graph is definitely not connected."
+  },
+  {
+    "timestamp": 480.0,
+    "frame_path": "keyframes/frame_480.0.jpg",
+    "transcript_text": "and these are all very interesting, very interesting structural questions to ask about this reconfiguration graph. now, on the algorithmic side,"
+  },
+  {
+    "timestamp": 540.0,
+    "frame_path": "keyframes/frame_540.0.jpg",
+    "transcript_text": "connected components. and the last question that i will mention, which is also interesting, is how fast can you go from one config?"
+  },
+  {
+    "timestamp": 600.0,
+    "frame_path": "keyframes/frame_600.0.jpg",
+    "transcript_text": "complete for k greater than or equal to 3. so, now how can you transform this into a reconfiguration problem? well, it's very simple. so, now you're given a formula."
+  },
+  {
+    "timestamp": 660.0,
+    "frame_path": "keyframes/frame_660.0.jpg",
+    "transcript_text": "of the given formula, of all the satisfying assignments of the formula f all right, so that's."
+  },
+  {
+    "timestamp": 720.0,
+    "frame_path": "keyframes/frame_720.0.jpg",
+    "transcript_text": "the k-colorings of the graph and how they are connected under this adjacency relation that we defined, which is a single vertex recoloring."
+  },
+  {
+    "timestamp": 780.0,
+    "frame_path": "keyframes/frame_780.0.jpg",
+    "transcript_text": "under what rule? so, here defining the rule for independent sets, how can i go between consecutive independent sets becomes a little bit"
+  },
+  {
+    "timestamp": 840.0,
+    "frame_path": "keyframes/frame_840.0.jpg",
+    "transcript_text": "that is the token jumping rule. the other rule is basically token sliding. so, in this case, we only allow a token to slide along edges of the graph."
+  },
+  {
+    "timestamp": 900.0,
+    "frame_path": "keyframes/frame_900.0.jpg",
+    "transcript_text": "might be asking why do we care about studying such problems? there's a lot of motivations out there. i mean, as sometimes."
+  },
+  {
+    "timestamp": 960.0,
+    "frame_path": "keyframes/frame_960.0.jpg",
+    "transcript_text": "you is that there are so many very interesting problems that are so easy to start thinking about without having too much background, which is which is why i think this is a"
+  },
+  {
+    "timestamp": 1020.0,
+    "frame_path": "keyframes/frame_1020.0.jpg",
+    "transcript_text": "first, major difference: this will be online. second is some advanced topics what we discussed. so, anyone who intends to explore."
+  },
+  {
+    "timestamp": 1080.0,
+    "frame_path": "keyframes/frame_1080.0.jpg",
+    "transcript_text": "is the set of all decision problems that can be solved using a polynomial amount of space. and the reason why i mentioned this class is because."
+  },
+  {
+    "timestamp": 1140.0,
+    "frame_path": "keyframes/frame_1140.0.jpg",
+    "transcript_text": "but actually, you can show a lot more than that. you can show that many, really many reconfiguration problems are actually pspace complete, which is not surprising."
+  },
+  {
+    "timestamp": 1200.0,
+    "frame_path": "keyframes/frame_1200.0.jpg",
+    "transcript_text": "so, if i give you two three colorings of a graph and i ask you, is there a path between them that recolors one vertex at a time and never is and is always?"
+  },
+  {
+    "timestamp": 1260.0,
+    "frame_path": "keyframes/frame_1260.0.jpg",
+    "transcript_text": "or path width, or even bucket width. so, a very, very, very simple graph structure. still, the problem remains hard."
+  },
+  {
+    "timestamp": 1320.0,
+    "frame_path": "keyframes/frame_1320.0.jpg",
+    "transcript_text": "more about token sliding and token jumping. these problems have been at the heart of the area of combinatorial reconfiguration. they have been studied so much."
+  },
+  {
+    "timestamp": 1380.0,
+    "frame_path": "keyframes/frame_1380.0.jpg",
+    "transcript_text": "complexity of token sliding also remains open. so, we don't know how to check if, given two independent sets, i can slide one to the other. can you add?"
+  },
+  {
+    "timestamp": 1440.0,
+    "frame_path": "keyframes/frame_1440.0.jpg",
+    "transcript_text": "so, there's the obvious parameter would be the number of tokens, right? so, one of the obvious parameters would be the number of tokens."
+  },
+  {
+    "timestamp": 1500.0,
+    "frame_path": "keyframes/frame_1500.0.jpg",
+    "transcript_text": "or at least that was the initial hope. that's why we started working on this project. we weren't able to answer the two questions. so we were able."
+  },
+  {
+    "timestamp": 1560.0,
+    "frame_path": "keyframes/frame_1560.0.jpg",
+    "transcript_text": "graphs, how can i go to other classes of graphs and see where token jumping becomes hard or easy? and it turned out that if you"
+  },
+  {
+    "timestamp": 1620.0,
+    "frame_path": "keyframes/frame_1620.0.jpg",
+    "transcript_text": "both vibrate tightness as well as c4 freeness. so, in that case, we were able to show that both problems became fpt."
+  },
+  {
+    "timestamp": 1680.0,
+    "frame_path": "keyframes/frame_1680.0.jpg",
+    "transcript_text": "keep bipertite and enforce the c4 freeness, we get fpt for both problems. and as a side note, this"
+  },
+  {
+    "timestamp": 1740.0,
+    "frame_path": "keyframes/frame_1740.0.jpg",
+    "transcript_text": "and couldn't. so, so that remains open. and it's, so i will not be going over."
+  },
+  {
+    "timestamp": 1800.0,
+    "frame_path": "keyframes/frame_1800.0.jpg",
+    "transcript_text": "so, how about if we don't allow triangles and large cliques? so, can we then say something about the problem?"
+  },
+  {
+    "timestamp": 1860.0,
+    "frame_path": "keyframes/frame_1860.0.jpg",
+    "transcript_text": "of the talk, i will try to cover some of the technical stuff. and as promised, i will try to keep it as light as possible so that i can give you some of a lot of the intuition."
+  },
+  {
+    "timestamp": 1920.0,
+    "frame_path": "keyframes/frame_1920.0.jpg",
+    "transcript_text": "what we're going to prove is the following theorem. if you take any p greater than or equal to 4, then both problems are w hard."
+  },
+  {
+    "timestamp": 1980.0,
+    "frame_path": "keyframes/frame_1980.0.jpg",
+    "transcript_text": "remains w1 hard if you exclude c4 up to cp for any constant p. but what is interesting and useful in that reduction."
+  },
+  {
+    "timestamp": 2040.0,
+    "frame_path": "keyframes/frame_2040.0.jpg",
+    "transcript_text": "it's an equivalent instance to the grid tiling instance, and that basically gives you a w1 hardness of independent set on."
+  },
+  {
+    "timestamp": 2100.0,
+    "frame_path": "keyframes/frame_2100.0.jpg",
+    "transcript_text": "would be as follows. we will add a universal vertex to each one of the cliques, and we will call this the starting set or the starting independent set."
+  },
+  {
+    "timestamp": 2160.0,
+    "frame_path": "keyframes/frame_2160.0.jpg",
+    "transcript_text": "etc., etc., etc. so, you need some way of forbidding these tokens to behave freely. we want to make ensure."
+  },
+  {
+    "timestamp": 2220.0,
+    "frame_path": "keyframes/frame_2220.0.jpg",
+    "transcript_text": "any red token wants to come to the blue position, then this red token needs to be moved to this."
+  },
+  {
+    "timestamp": 2280.0,
+    "frame_path": "keyframes/frame_2280.0.jpg",
+    "transcript_text": "intuition should be pretty clear: is that you can subdivide those edges, make them long enough so that you don't introduce any forbidden cycles, and add."
+  },
+  {
+    "timestamp": 2340.0,
+    "frame_path": "keyframes/frame_2340.0.jpg",
+    "transcript_text": "no questions. all right."
+  },
+  {
+    "timestamp": 2400.0,
+    "frame_path": "keyframes/frame_2400.0.jpg",
+    "transcript_text": "the target set and k as the number of tokens. so let me try and draw something here. so if you look at"
+  },
+  {
+    "timestamp": 2460.0,
+    "frame_path": "keyframes/frame_2460.0.jpg",
+    "transcript_text": "h is epsilon sparse, where epsilon sparse means that the number of edges is at most n squared minus epsilon, positive epsilon."
+  },
+  {
+    "timestamp": 2520.0,
+    "frame_path": "keyframes/frame_2520.0.jpg",
+    "transcript_text": "technique for the token jumping problem. and the intuition behind the buffer technique is very simple. so if i have s union t, but somewhere in"
+  },
+  {
+    "timestamp": 2580.0,
+    "frame_path": "keyframes/frame_2580.0.jpg",
+    "transcript_text": "so, so it's a well-known technique. all right. so, what do we show?"
+  },
+  {
+    "timestamp": 2640.0,
+    "frame_path": "keyframes/frame_2640.0.jpg",
+    "transcript_text": "closed neighborhood of s union t. and it turns out there, if you have c3, c4 freeness, the only thing you need on top of that."
+  },
+  {
+    "timestamp": 2700.0,
+    "frame_path": "keyframes/frame_2700.0.jpg",
+    "transcript_text": "a vertex of degree less than n over k, and then basically you apply the standard greedy packing algorithm for constructing an independent set of size k."
+  },
+  {
+    "timestamp": 2760.0,
+    "frame_path": "keyframes/frame_2760.0.jpg",
+    "transcript_text": "so, now what happens if we have a c3c43j that has a vertex of degree 3k? well, let's see what happens. so, if we have a"
+  },
+  {
+    "timestamp": 2820.0,
+    "frame_path": "keyframes/frame_2820.0.jpg",
+    "transcript_text": "any vertex other than the yellow vertex can have at most one neighbor in common with the yellow vertex. because if you do have two neighbors in common,"
+  },
+  {
+    "timestamp": 2880.0,
+    "frame_path": "keyframes/frame_2880.0.jpg",
+    "transcript_text": "so now combining those two observations, lemmas together."
+  },
+  {
+    "timestamp": 2940.0,
+    "frame_path": "keyframes/frame_2940.0.jpg",
+    "transcript_text": "all right. so, how does this theorem impact?"
+  },
+  {
+    "timestamp": 3000.0,
+    "frame_path": "keyframes/frame_3000.0.jpg",
+    "transcript_text": "right, so it becomes an immediate consequence of the previous theorem, but the previous theorem is even more general than this corollary. so, this corollary."
+  },
+  {
+    "timestamp": 3060.0,
+    "frame_path": "keyframes/frame_3060.0.jpg",
+    "transcript_text": "for the difficulty or the easiness of the problem? well, you have to be careful how you define that because in token sliding, sliding, token."
+  },
+  {
+    "timestamp": 3120.0,
+    "frame_path": "keyframes/frame_3120.0.jpg",
+    "transcript_text": "remove vertices and add vertices as long as you remain an independent tent of size at least k."
+  },
+  {
+    "timestamp": 3180.0,
+    "frame_path": "keyframes/frame_3180.0.jpg",
+    "transcript_text": "and then you have edges between two vertices. if there is an edge between two vertices of the independent set, and now you are doing a reachability quest."
+  },
+  {
+    "timestamp": 3240.0,
+    "frame_path": "keyframes/frame_3240.0.jpg",
+    "transcript_text": "hi, amir. hi, hi. how are you?"
+  },
+  {
+    "timestamp": 3300.0,
+    "frame_path": "keyframes/frame_3300.0.jpg",
+    "transcript_text": "answers. i think it's a very nice question to pose. even in terms of non-parametrized complexity, standard complexity, i think that."
+  },
+  {
+    "timestamp": 3360.0,
+    "frame_path": "keyframes/frame_3360.0.jpg",
+    "transcript_text": "it's basically literally gonna be: these guys are gonna move here, so each is gonna cost me one."
+  },
+  {
+    "timestamp": 3420.0,
+    "frame_path": "keyframes/frame_3420.0.jpg",
+    "transcript_text": "absolutely, okay. thanks. so, akanksha, i have a remark about your question. so, if a vertex"
+  },
+  {
+    "timestamp": 3480.0,
+    "frame_path": "keyframes/frame_3480.0.jpg",
+    "transcript_text": "set and you move from one independent set to another. so, but we can only move from one independent set to the other if the"
+  },
+  {
+    "timestamp": 3540.0,
+    "frame_path": "keyframes/frame_3540.0.jpg",
+    "transcript_text": "and in fact, akancheso, so this is also, this was the crucial difference between p-space completeness and np-completeness of sliding versus jumping in bipertype graphs."
+  },
+  {
+    "timestamp": 3600.0,
+    "frame_path": "keyframes/frame_3600.0.jpg",
+    "transcript_text": ""
+  },
+  {
+    "timestamp": 3660.0,
+    "frame_path": "keyframes/frame_3660.0.jpg",
+    "transcript_text": ""
+  },
+  {
+    "timestamp": 3720.0,
+    "frame_path": "keyframes/frame_3720.0.jpg",
+    "transcript_text": "i guess okay. i don't think there are any more questions, so maybe this is a good time to wrap up. so, thank you once again, uh, professor amir."
+  }
+]

@@ -1,0 +1,376 @@
+INFO:root:Skipped 0.0-10.0s: No speech detected
+INFO:root:Skipped 10.0-20.0s: No speech detected
+INFO:root:Transcribed 20.0-30.0s: Thank you for having me. It's a real pleasure to be here. So, all right, let's jump right into it.
+INFO:root:Transcribed 30.0-40.0s: Since I did not really know the audience too well, I made the assumption that many of you maybe have not seen this area of combinatorial.
+INFO:root:Transcribed 40.0-50.0s: The configuration problems. So I decided what I'm going to do is I'm going to give a gentle introduction to the area just to show you how many exciting problems.
+INFO:root:Transcribed 50.0-60.0s: And open problems are there. And then I will talk more about token jumping and token sliding, specifically what we know about them, what we
+INFO:root:Transcribed 60.0-70.0s: Knew about them before we started working on this project, what we managed to discover, and the tons of questions that remain to be answered.
+INFO:root:Transcribed 70.0-80.0s: And it's a really, I mean, the questions are so nice to state, so easy to state, and they are accessible really to researchers.
+INFO:root:Transcribed 80.0-90.0s: At any level, which is one of the reasons why I enjoy working on these problems. So, hopefully, you'll get to enjoy them too.
+INFO:root:Transcribed 90.0-100.0s: So, before I start, I should point out that this is joint work that started back in the combinatorial reconfiguration workshop almost two years.
+INFO:root:Transcribed 100.0-110.0s: Years ago. And it's joint work with Valentin Barchet, Nicola Bousquet, Clement Dalard, and Carl Lomer, who is my master's student.
+INFO:root:Transcribed 110.0-120.0s: All right, so the outline of the talk, it's going to be in four sections. I will give a gentle
+INFO:root:Transcribed 120.0-130.0s: Introduction to combinatorial reconfiguration because I know many of you might not have seen such problems. Then I will talk.
+INFO:root:Transcribed 130.0-140.0s: About token jumping and token sliding, what we know about them in terms of classical complexity or one-dimensional complexity. Then I'll talk about the pattern transcript.
+INFO:root:Transcribed 140.0-150.0s: Complexity of these two problems and what we know as of today as we speak, and what are the problems that remain to be solved, and then the last.
+INFO:root:Transcribed 150.0-160.0s: Part of the lecture is where I will put some of the technical stuff to show you, to give you an idea about how we prove things when we deal with such problems and where are the difficulties.
+INFO:root:Transcribed 160.0-170.0s: Difficulties and what kind of techniques have been developed. So, I tried to keep the technical part as light as I could so that really we, I mean, I can focus.
+INFO:root:Transcribed 170.0-180.0s: On the big picture and the questions to be asked and answered. So, if you have any questions along the way, please feel free to interrupt me.
+INFO:root:Transcribed 180.0-190.0s: Either in the chat or by unmuting yourselves. So don't worry about leaving the questions till the end. You can interrupt me whenever.
+INFO:root:Transcribed 190.0-200.0s: Feel whenever I say something that doesn't make sense. Hopefully, that won't happen too often. All right, so what is combinatorial reconfiguration?
+INFO:root:Transcribed 200.0-210.0s: So, the best way I think to introduce is with a familiar example, which is one-player games. And the most common one that we use is the 50.
+INFO:root:Transcribed 210.0-220.0s: 15 puzzle game. So, for those of you who don't know the 15 puzzle game, so you're given like a four by four grid, and you have one empty square.
+INFO:root:Transcribed 220.0-230.0s: And basically, you have all the remaining 15 squares are numbered from 1 to 15, and they come in some ordering. And your job is to basically move the squares.
+INFO:root:Transcribed 230.0-240.0s: Around so that all the numbers become ordered. So it's by row. So they have to be ordered this way. So if you notice in this figure, the only problem.
+INFO:root:Transcribed 240.0-250.0s: Is that 14 and 15 are reversed? But the only moves that you're allowed to do is to basically move a number into the empty square.
+INFO:root:Transcribed 250.0-260.0s: And basically, you have to do a sequence of moves so that you get all of the numbers in order. And for those of you who know this.
+INFO:root:Transcribed 260.0-270.0s: This game, this example that I have on the slide is actually unsolvable. There is no way you can flip the order and 15 of 14 and
+INFO:root:Transcribed 270.0-280.0s: 15 and this puzzle. And I have a link here if you want to actually play the puzzle online, which is pretty fun. So, why do I start my talk by talking?
+INFO:root:Transcribed 280.0-290.0s: About 15 puzzle, it's because it's really, I mean, the way you solve the 15 puzzle tells you a lot about the area of combinatorial reconfiguration.
+INFO:root:Transcribed 290.0-300.0s: So, the standard way we would think about the 15 puzzle is by looking at the state space or what we call the reconfiguration graph of the 15 puzzle.
+INFO:root:Transcribed 300.0-310.0s: Puzzle. So, what does that graph consist of? Well, we have one vertex or one node in this graph for each possible configuration.
+INFO:root:Transcribed 310.0-320.0s: Of the puzzle. So basically, each possible configuration, so it would be a possible permutation of the 15 numbers in addition to where you're going to put the empty square.
+INFO:root:Transcribed 320.0-330.0s: Each one of those will be a vertex in the graph. And now we connect two vertices in that graph whenever one can be.
+INFO:root:Transcribed 330.0-340.0s: Each from the other by a single move, and what do we mean here by a single move? Where it's basically just moving a number into the empty square. So if you
+INFO:root:Transcribed 340.0-350.0s: You look at the top node here in this graph, there are four possibilities that you can do in one move, which we call a reconfiguration step, which is you can move.
+INFO:root:Transcribed 350.0-360.0s: Nine into the empty square, you can move three into the empty square, twelve or fifteen, and that gives us basically four neighbors of that vertex and.
+INFO:root:Transcribed 360.0-370.0s: The graph. Okay, and we call this whole graph the reconfiguration graph or the state space, if you're more comfortable thinking about states, the states of.
+INFO:root:Transcribed 370.0-380.0s: Of the game. So, now, given this graph, the reconfiguration graph, there are tons of very interesting questions that you can ask about it.
+INFO:root:Transcribed 380.0-390.0s: There are structural questions and there are algorithmic questions. And these are typically the types of questions that we're interested in in this area.
+INFO:root:Transcribed 390.0-400.0s: Area of combinatorial reconfiguration. So, a couple of examples about structural questions would be: well, the simplest one would be: how big is this?
+INFO:root:Transcribed 400.0-410.0s: Configuration graph, right? How many vertices or how many edges? And that's usually not a very hard question to answer in terms of upper and lower.
+INFO:root:Transcribed 410.0-420.0s: More interestingly, you could ask: is this reconfiguration graph connected? Right? Or can I reach any state starting from any?
+INFO:root:Transcribed 420.0-430.0s: Other state by a sequence of legal moves. And as I told you before, for the 15 puzzle, the reconfiguration graph is definitely not connected.
+INFO:root:Transcribed 430.0-440.0s: Because there was no way to reverse 14 and 15 in the previous example that I showed you. And you can easily prove that, by the way. So, when it's not connected, another question.
+INFO:root:Transcribed 440.0-450.0s: Would be how many components does I have? Is there some sort of nice structure to the components of this graph?
+INFO:root:Transcribed 450.0-460.0s: And then another question would be: what is the diameter of this reconfiguration graph or of each one of its components? And that's usually a very important question to ask when you're dealing with one.
+INFO:root:Transcribed 460.0-470.0s: Player games because this could tell you like what would be the worst possible shortest path to reach a target configuration or to solve your game.
+INFO:root:Transcribed 470.0-480.0s: To win your game, for example. And in the literature, this is sometimes known as God's number, which would be the diameter of the reconfiguration graph.
+INFO:root:Transcribed 480.0-490.0s: And these are all very interesting, very interesting structural questions to ask about this reconfiguration graph. Now, on the algorithmic side,
+INFO:root:Transcribed 490.0-500.0s: Or the computational side, there's the obvious question of if I'm given a starting state and some ending state or target state, like in the case of the puzzle game.
+INFO:root:Transcribed 500.0-510.0s: Game, I'm given some starting state, and we know what the goal state is. So, here, one decision problem would be to answer the question whether it's possible to get.
+INFO:root:Transcribed 510.0-520.0s: To the target state, starting from some initial state that is also given to me. So you can decide to solve this problem either as a decision problem or as a search.
+INFO:root:Transcribed 520.0-530.0s: Problem, which will give you the actual sequence of steps that will take you from a state to the target state.
+INFO:root:Transcribed 530.0-540.0s: Other interesting computational problems: is it always possible to go from one configuration to any other? And this is basically also related to the structural question about.
+INFO:root:Transcribed 540.0-550.0s: Connected components. And the last question that I will mention, which is also interesting, is how fast can you go from one config?
+INFO:root:Transcribed 550.0-560.0s: To another, meaning, can you do it in at most case steps? There is a question. I should wait or.
+INFO:root:Transcribed 560.0-570.0s: No? Okay. All right. So, think about all of these questions.
+INFO:root:Transcribed 570.0-580.0s: That we posed using the simple 15-puzzle game. And now we're going to look at a lot of other possible problems where the
+INFO:root:Transcribed 580.0-590.0s: The same reconfiguration graph can be extracted, and we can ask the same set of questions. So, all of you here are familiar with the KSAT problem.
+INFO:root:Transcribed 590.0-600.0s: So, you're given a Boolean formula, and you want to know if you can satisfy this formula by assigning values to the variables. And we know that this is NP.
+INFO:root:Transcribed 600.0-610.0s: Complete for k greater than or equal to 3. So, now how can you transform this into a reconfiguration problem? Well, it's very simple. So, now you're given a formula.
+INFO:root:Transcribed 610.0-620.0s: And you're given two satisfying assignments. So you can think of those satisfying assignments as bit vectors. And so now the
+INFO:root:Transcribed 620.0-630.0s: Question that you can ask is: Can I go from the first satisfying assignment S to the next one by basically flipping one bit at a time?
+INFO:root:Transcribed 630.0-640.0s: Under the condition that I remain a satisfying assignment at all times. And notice that without this condition, the problem is trivial.
+INFO:root:Transcribed 640.0-650.0s: So, you can basically just flip the bits however you like and reach s from t or t from s. But once you add this constraint of
+INFO:root:Transcribed 650.0-660.0s: You should remain a satisfying assignment, the problem becomes way more interesting. And you can think of this problem again as walking in the solution space.
+INFO:root:Transcribed 660.0-670.0s: Of the given formula, of all the satisfying assignments of the formula f all right, so that's.
+INFO:root:Transcribed 670.0-680.0s: That's the SAT reconfiguration problem. Let's look at another example: graph coloring. We all know it, we all love it.
+INFO:root:Transcribed 680.0-690.0s: You're given a graph and some integer k, and you are asked whether you can properly k-color the graph G. And we know again that this is NP-complete for k greater than.
+INFO:root:Transcribed 690.0-700.0s: Equal to three. How do you transform that into a reconfiguration problem? Well, now you're given a graph, you're given two coverings of the graph, alpha.
+INFO:root:Transcribed 700.0-710.0s: And beta. And the question is: can you recolor alpha to get to beta? But you need to recolor one vertex at a time, and you need
+INFO:root:Transcribed 710.0-720.0s: To remain a proper K-coloring throughout. Same idea again leads us to this notion of the reconfiguration space where we are looking at.
+INFO:root:Transcribed 720.0-730.0s: The K-colorings of the graph and how they are connected under this adjacency relation that we defined, which is a single vertex recoloring.
+INFO:root:Transcribed 730.0-740.0s: The final example that I will mention, which will be basically what we will focus on in the rest of the talk, is token placement.
+INFO:root:Transcribed 740.0-750.0s: I call it, but as you will all guess, this is the famous independent set problem. But we will look at it as a token placement problem because it will be more useful for the rest of.
+INFO:root:Transcribed 750.0-760.0s: The talk. So you're given a graph G and an integer K. And the question is: can you place K tokens on your graph, K black tokens, so that no two of these tokens share an.
+INFO:root:Transcribed 760.0-770.0s: Edge. And of course, we all know that this is an NP-complete problem. So, how can you transform this problem into a reconfiguration problem again? Now,
+INFO:root:Transcribed 770.0-780.0s: I'm given a graph, two independent sets of the graph, each of size k. And the question is: can I go from one independent set to the other?
+INFO:root:Transcribed 780.0-790.0s: Under what rule? So, here defining the rule for independent sets, how can I go between consecutive independent sets becomes a little bit
+INFO:root:Transcribed 790.0-800.0s: Less obvious, and there are two main strategies that people have attempted. So, the first rule is what we call token jumping. So, you are
+INFO:root:Transcribed 800.0-810.0s: Basically, allowed to take any token on your graph and jump it to any other vertex on the graph, assuming that it doesn't have a token and that you maintain.
+INFO:root:Transcribed 810.0-820.0s: An independent set at all times. So, for example, in this example that I have here, it would be perfectly okay to take this token here.
+INFO:root:Transcribed 820.0-830.0s: And jump it to this vertex here. Or I could also take this token here and jump it to this vertex here.
+INFO:root:Transcribed 830.0-840.0s: So, that no, actually, that would violate the independence. So, you can jump to any other vertex as long as you maintain independence.
+INFO:root:Transcribed 840.0-850.0s: That is the token jumping rule. The other rule is basically token sliding. So, in this case, we only allow a token to slide along edges of the graph.
+INFO:root:Transcribed 850.0-860.0s: So, a token can only move to an adjacent vertex, assuming, of course, this does not violate independence.
+INFO:root:Transcribed 860.0-870.0s: So now we have two different reconfiguration graphs we can think about. We can think about the reconfiguration graph under the token jumping adjacency, and we can
+INFO:root:Transcribed 870.0-880.0s: Think about the reconfiguration graph under the token sliding adjacency. And we're going to talk about these two different problems because they do actually behave quite.
+INFO:root:Transcribed 880.0-890.0s: Quite differently, and they produced quite interesting results. Like the difference between the two, we don't fully understand yet, but we kind of know that token sliding.
+INFO:root:Transcribed 890.0-900.0s: Can be harder than token jumping. But there's still a lot of questions to be answered. All right. So some of you.
+INFO:root:Transcribed 900.0-910.0s: Might be asking why do we care about studying such problems? There's a lot of motivations out there. I mean, as sometimes.
+INFO:root:Transcribed 910.0-920.0s: I would say you don't need motivation. They're interesting. There's a lot of open questions that we need to answer. But you can also think about the configuration problems.
+INFO:root:Transcribed 920.0-930.0s: As another way of modeling real-world algorithmic problems, because you usually never start from scratch when you're trying to solve real-world problems.
+INFO:root:Transcribed 930.0-940.0s: You usually start from something and you're trying to improve it or make it better or change it to something more appropriate. Another very good application of.
+INFO:root:Transcribed 940.0-950.0s: These of studying these problems is that they give you a better understanding of solution spaces, which can be very important for other areas as well. And they have been used.
+INFO:root:Transcribed 950.0-960.0s: Used in statistical physics, quantum computing, and in complexity theory, combinatorics, and robotics, and hopefully many more applications to come. But what I would tell
+INFO:root:Transcribed 960.0-970.0s: You is that there are so many very interesting problems that are so easy to start thinking about without having too much background, which is which is why I think this is a
+INFO:root:Transcribed 970.0-980.0s: Very nice area to start working on at any level in your research career. All right.
+INFO:root:Transcribed 980.0-990.0s: So, I'll take a break here and take questions if there are any. And then we will dive into the token jumping and token sliding problems, what we know about them.
+INFO:root:Transcribed 990.0-1000.0s: In terms of classical complexity, and what was basically the starting point for the project that led us to this paper.
+INFO:root:Transcribed 1000.0-1010.0s: Any questions at this point? I'll apologize for the small context which I am interrupting here.
+INFO:root:Transcribed 1010.0-1020.0s: So, this is just to announce for the PC301 workshop that will be happening in December end. And this will be slightly different from the previous two workshops.
+INFO:root:Transcribed 1020.0-1030.0s: First, major difference: this will be online. Second is some advanced topics what we discussed. So, anyone who intends to explore.
+INFO:root:Transcribed 1030.0-1040.0s: Somewhat more complex topics in parametrized algorithms is invited to have a check. They can look at the website that has been shared on the chat.
+INFO:root:Transcribed 1040.0-1050.0s: And if you wish, you can register simply by filling a form that is linked at the bottom of the webpage. So, just to inform you all about it and
+INFO:root:Transcribed 1050.0-1060.0s: Sorry for the interruption, Professor. Now you can continue. All right. All right. So let's start talking about.
+INFO:root:Transcribed 1060.0-1070.0s: Token jumping, token sliding, and a little bit about classical complexity. I know everybody here knows about P and N P, so I'm not going to talk.
+INFO:root:Transcribed 1070.0-1080.0s: About this, some of you might not be familiar with the P-Space class, so just a quick note: that's as much as you will need to know for this talk: is that P-Space.
+INFO:root:Transcribed 1080.0-1090.0s: Is the set of all decision problems that can be solved using a polynomial amount of space. And the reason why I mentioned this class is because.
+INFO:root:Transcribed 1090.0-1100.0s: Many, many, many, many reconfiguration problems actually are P-space complete. Okay, and so what we know, the standard inclusion is we.
+INFO:root:Transcribed 1100.0-1110.0s: We know that P is contained in NP, which is contained in P space. But a very useful thing about P space is that Savage proved that it's equal to NP space.
+INFO:root:Transcribed 1110.0-1120.0s: So, polynomial space and non-deterministic polynomial space are the same class, basically. And that's extremely useful when you.
+INFO:root:Transcribed 1120.0-1130.0s: Start to think about reconfiguration problems because if you think of a reconfiguration problem where you're given some state and you want to reach the other one.
+INFO:root:Transcribed 1130.0-1140.0s: So basically, you can solve that easily in non-deterministic polynomial space, which basically implies that they are in p-space.
+INFO:root:Transcribed 1140.0-1150.0s: But actually, you can show a lot more than that. You can show that many, really many reconfiguration problems are actually PSpace complete, which is not surprising.
+INFO:root:Transcribed 1150.0-1160.0s: The fact that many of these reconfiguration problems are P-space complete is not very surprising.
+INFO:root:Transcribed 1160.0-1170.0s: Them not being in NP is because they don't always have polynomial size certificates, which also makes sense because sometimes the number of steps that you need to take to go.
+INFO:root:Transcribed 1170.0-1180.0s: From one configuration to the other might very well be exponential in the graph size. But there are also some extremely surprising results, and these are some of the
+INFO:root:Transcribed 1180.0-1190.0s: Results, some of my favorite results in the area. So, for example, you all know that coloring is NP-complete even for k equals 3.
+INFO:root:Transcribed 1190.0-1200.0s: However, it turns out that if you try to solve the recoloring problem for k equals 3, it's actually polynomial time solvable.
+INFO:root:Transcribed 1200.0-1210.0s: So, if I give you two three colorings of a graph and I ask you, is there a path between them that recolors one vertex at a time and never is and is always?
+INFO:root:Transcribed 1210.0-1220.0s: Always a valid three coloring, then this problem can be solved in polynomial time. And the recoloring problem only becomes p-space complete for k equals 4 and more.
+INFO:root:Transcribed 1220.0-1230.0s: Right, so that's the first surprising result. Another very surprising result is that, as you're all
+INFO:root:Transcribed 1230.0-1240.0s: FPT experts here, I know that you're all familiar with the fact that usually when we study problems on graphs of bounded bucket width, path width, tree width, they
+INFO:root:Transcribed 1240.0-1250.0s: Tend to become easier. It turns out that that's not really the case for reconfiguration problems, at least for token sliding and
+INFO:root:Transcribed 1250.0-1260.0s: Jumping, which is the two problems that are related to independent sets. It turns out that those two problems remain P-space complete, even if you have a graph of constant tree width.
+INFO:root:Transcribed 1260.0-1270.0s: Or path width, or even bucket width. So, a very, very, very simple graph structure. Still, the problem remains hard.
+INFO:root:Transcribed 1270.0-1280.0s: All right, and finally, the last theorem that I also like a lot shows you basically that sliding and jumping.
+INFO:root:Transcribed 1280.0-1290.0s: Behave differently. And it was shown that if you restrict yourself to bipartite graphs, where we know that max independent set can.
+INFO:root:Transcribed 1290.0-1300.0s: Can be solved in polynomial time. If you restrict yourself to those graphs, it turns out that token jumping is NP-complete.
+INFO:root:Transcribed 1300.0-1310.0s: Whereas token sliding is P space complete, which is a strange difference between the behavior.
+INFO:root:Transcribed 1310.0-1320.0s: Of those two problems. All right. So, in fact, we know a lot.
+INFO:root:Transcribed 1320.0-1330.0s: More about token sliding and token jumping. These problems have been at the heart of the area of combinatorial reconfiguration. They have been studied so much.
+INFO:root:Transcribed 1330.0-1340.0s: And we know so much about them, at least in terms of standard or classical complexity. So, some of the important results for our paper.
+INFO:root:Transcribed 1340.0-1350.0s: That we're going to focus on is this result. So that's going to be the starting point of the results that we will discuss.
+INFO:root:Transcribed 1350.0-1360.0s: Next, when we move to parametrized complexity. So, the fact that token sliding and token jumping are B space complete and then NP complete, respectively, on
+INFO:root:Transcribed 1360.0-1370.0s: Hypertype graphs was the starting point of our next paper. But there are some very interesting results here that are also worth mentioning. So, for example, for even-hole-free graphs,
+INFO:root:Transcribed 1370.0-1380.0s: We know how to solve token jumping in polynomial time, but the complexity of independent set even remains open on this class of graphs.
+INFO:root:Transcribed 1380.0-1390.0s: Complexity of token sliding also remains open. So, we don't know how to check if, given two independent sets, I can slide one to the other. Can you add?
+INFO:root:Transcribed 1390.0-1400.0s: Answer that question in polynomial time for even whole-free graphs. For split graphs and chordal graphs, they also behave extremely differently.
+INFO:root:Transcribed 1400.0-1410.0s: Token sliding and token jumping, right? So they are token sliding is P-space complete on split graphs and chordal graphs, while token jumping is polynomial time.
+INFO:root:Transcribed 1410.0-1420.0s: And that is some of the reasons why we feel that token sliding is harder usually than token jumping, but it's not always the case.
+INFO:root:Transcribed 1420.0-1430.0s: All right, so that's it for classical complexity.
+INFO:root:Transcribed 1430.0-1440.0s: So now let's move on to parametrized complexity. And let's basically think about how you can parametrize those two problems: token jumping and token sliding.
+INFO:root:Transcribed 1440.0-1450.0s: So, there's the obvious parameter would be the number of tokens, right? So, one of the obvious parameters would be the number of tokens.
+INFO:root:Transcribed 1450.0-1460.0s: And we're going to denote that by k. Another parameter would be the length of the sequence, like how many steps does it take to go from one independent set to the other.
+INFO:root:Transcribed 1460.0-1470.0s: You can also obviously parameterize by tree width or path width or any combination of the above. When we started working on this problem,
+INFO:root:Transcribed 1470.0-1480.0s: Our initial aim was to basically study the parameterized complexity of token sliding and token jumping on biperty graphs. Using the parameters.
+INFO:root:Transcribed 1480.0-1490.0s: K, number of tokens. Right? Because remember, we saw that token sliding is P space complete on diapertag graphs, and token jumping is NP complete.
+INFO:root:Transcribed 1490.0-1500.0s: So we were interested to see if basically this is going to give us W1 hardness for token sliding and FPTness for token jumping.
+INFO:root:Transcribed 1500.0-1510.0s: Or at least that was the initial hope. That's why we started working on this project. We weren't able to answer the two questions. So we were able.
+INFO:root:Transcribed 1510.0-1520.0s: To answer one side of the question, which is we were able to show that on bipartite graphs, token sliding is in fact.
+INFO:root:Transcribed 1520.0-1530.0s: W1 heart. So token sliding parametrized by the number of tokens on bipartite graphs is W1 heart. We were not able
+INFO:root:Transcribed 1530.0-1540.0s: To answer the question for token jumping, so that is still an open question. So, having answered that question and
+INFO:root:Transcribed 1540.0-1550.0s: Failed on the next question, we started thinking about ways to basically simplify a little bit some of these questions. So the next thing we asked ourselves.
+INFO:root:Transcribed 1550.0-1560.0s: So, there are two directions where you can try and simplify. So, the next thing we asked ourselves was: okay, so from byproduct.
+INFO:root:Transcribed 1560.0-1570.0s: Graphs, how can I go to other classes of graphs and see where token jumping becomes hard or easy? And it turned out that if you
+INFO:root:Transcribed 1570.0-1580.0s: You basically exclude only C4 from your graph, right? And so we, because in bipartite graphs, you're excluding.
+INFO:root:Transcribed 1580.0-1590.0s: All odd cycles. Right, so we and we started thinking about what kinds of cycles affect the behavior of those problems.
+INFO:root:Transcribed 1590.0-1600.0s: Question was: What about C4 free graphs? And it turned out that both problems remain W1 hard on C4 free graphs. Now, if you exclude C3 and
+INFO:root:Transcribed 1600.0-1610.0s: And C4, it turns out that token jumping becomes FPT, has an order k squared kernel, but for token sliding, we were not able.
+INFO:root:Transcribed 1610.0-1620.0s: To determine the complexity. Now, if you go to the other side of that, so what if we enforce both?
+INFO:root:Transcribed 1620.0-1630.0s: Both vibrate tightness as well as C4 freeness. So, in that case, we were able to show that both problems became FPT.
+INFO:root:Transcribed 1630.0-1640.0s: Okay, and basically the bipartite bounded degree graphs was just a stepping stone to get to the bipartite.
+INFO:root:Transcribed 1640.0-1650.0s: For a free graph result. So let me repeat that maybe slightly more clearly. So after basically answering the first question,
+INFO:root:Transcribed 1650.0-1660.0s: Which was bipartite graphs. We were able to show that token sliding was W1 hard, but we were not able to determine the complexity of token jumping. So then we went to see for.
+INFO:root:Transcribed 1660.0-1670.0s: Free graphs, and we were able to show that both problems are actually W1 heart. Then, if we added one more constraint, which was C3, C4 free.
+INFO:root:Transcribed 1670.0-1680.0s: Graphs. We got FPTNS for token jumping, but it remained open for token sliding. And on the other side of the spectrum, so if we
+INFO:root:Transcribed 1680.0-1690.0s: Keep bipertite and enforce the C4 freeness, we get FPT for both problems. And as a side note, this
+INFO:root:Transcribed 1690.0-1700.0s: A blue result is not part of our paper. This was known prior to our paper.
+INFO:root:Transcribed 1700.0-1710.0s: So, any questions about the results?
+INFO:root:Transcribed 1710.0-1720.0s: No questions.
+INFO:root:Transcribed 1720.0-1730.0s: All right, cool. So, lots of open problems. The first and obvious one is.
+INFO:root:Transcribed 1730.0-1740.0s: What is the pattern? Is token jumping FPT parameterized by K on bipartite graphs? And that's really, I mean, that was the initial question that we set out to answer.
+INFO:root:Transcribed 1740.0-1750.0s: And couldn't. So, so that remains open. And it's, so I will not be going over.
+INFO:root:Transcribed 1750.0-1760.0s: The hardness reduction for token sliding on bipartite graphs because it's quite technical. I don't feel a talk is the right place to go over it.
+INFO:root:Transcribed 1760.0-1770.0s: If you go over the reduction, you will see that it's the two problems really behave differently, and there's nothing doesn't seem
+INFO:root:Transcribed 1770.0-1780.0s: To be a chance to basically make the same type of reduction work for token jumping. So, the second interesting open question is: how about token jumping?
+INFO:root:Transcribed 1780.0-1790.0s: Parameterized by k on triangle free graphs. That's basically even more general than question one. Right? So, so, and the reason why I
+INFO:root:Transcribed 1790.0-1800.0s: Mentioned this question separately is because almost every reduction that I know of includes large cliques, so you need to use large clicks in your reductions.
+INFO:root:Transcribed 1800.0-1810.0s: So, how about if we don't allow triangles and large cliques? So, can we then say something about the problem?
+INFO:root:Transcribed 1810.0-1820.0s: So that's for token jumping. Now, when it when you go to token sliding, so so the open problem is what happens for token sliding on graphs of
+INFO:root:Transcribed 1820.0-1830.0s: Girth at least five. So if they are C3, C4, free. Or you can even make that a bit weaker and ask for any girth of at least.
+INFO:root:Transcribed 1830.0-1840.0s: P for some constant P. And for all of these questions, of course, polynomial kernels would be interesting as well.
+INFO:root:Transcribed 1840.0-1850.0s: Because in our case, we do get polynomial kernels for the FPT design. The polynomials are not great, but
+INFO:root:Transcribed 1850.0-1860.0s: Polynomial regardless. All right. So, and the rest.
+INFO:root:Transcribed 1860.0-1870.0s: Of the talk, I will try to cover some of the technical stuff. And as promised, I will try to keep it as light as possible so that I can give you some of a lot of the intuition.
+INFO:root:Transcribed 1870.0-1880.0s: And techniques that are used in this paper and that are generally used when dealing with reconfiguration problems. So, the first result that
+INFO:root:Transcribed 1880.0-1890.0s: Will go over is this W hardness on C4 free graphs, right? For both token sliding and token jumping. It's the same deduction, and you will.
+INFO:root:Transcribed 1890.0-1900.0s: Get both results because we will be using maximum independent sets. So, if you're trying to basically do
+INFO:root:Transcribed 1900.0-1910.0s: Token sliding from one maximum independent set to the other, or token jumping, these two rules become equivalent. Jumping becomes equivalent to sliding. So when you
+INFO:root:Transcribed 1910.0-1920.0s: You're dealing with maximum independent sets, these two basically rules are the same. And that's what we're going to do. But what we're going to prove actually is a stronger theorem.
+INFO:root:Transcribed 1920.0-1930.0s: What we're going to prove is the following theorem. If you take any p greater than or equal to 4, then both problems are w hard.
+INFO:root:Transcribed 1930.0-1940.0s: On C4, C5, dot, dot, dot, up to CP free graphs, which implies, of course, C4 free graphs.
+INFO:root:Transcribed 1940.0-1950.0s: But you can basically exclude any cycles from C4 up to Cp for constant P, and the problems will remain.
+INFO:root:Transcribed 1950.0-1960.0s: W1 heart. So, how do we prove this result? In fact, we use
+INFO:root:Transcribed 1960.0-1970.0s: Known reduction from a problem known as grid tiling, which is a W1 hard problem. And grid tiling is reduced to the
+INFO:root:Transcribed 1970.0-1980.0s: Independent set problem on C4 up to CP3 graphs. And that reduction was used to show that independent set remain.
+INFO:root:Transcribed 1980.0-1990.0s: Remains W1 hard if you exclude C4 up to Cp for any constant P. But what is interesting and useful in that reduction.
+INFO:root:Transcribed 1990.0-2000.0s: Is the graph that is obtained from the reduction? So the graph that is obtained from the reduction has three properties that are going to be useful.
+INFO:root:Transcribed 2000.0-2010.0s: To us, the first property is that you can partition the graph into basically 8k squared into p plus one cliques.
+INFO:root:Transcribed 2010.0-2020.0s: So, you have a bunch of cliques, each of size n, and all of the edges basically are between the cliques. But that's it.
+INFO:root:Transcribed 2020.0-2030.0s: It that's the whole of the graph, it's a bunch of cliques and edges between them. Of course, the more important property as well here is that this.
+INFO:root:Transcribed 2030.0-2040.0s: Graph is going to be C4 up to CP3. It will not have any of those cycles as an induced subgraph. And
+INFO:root:Transcribed 2040.0-2050.0s: It's an equivalent instance to the grid tiling instance, and that basically gives you a W1 hardness of independent set on.
+INFO:root:Transcribed 2050.0-2060.0s: This class of graphs. So notice in this case that an independent set of size 8k squared into b plus 1 will have to be a
+INFO:root:Transcribed 2060.0-2070.0s: Maximum independent set because that's how many cliques we get in the resulting graph. And that's basically the sizes that we will be working with, more or less, up to some modifications.
+INFO:root:Transcribed 2070.0-2080.0s: But this will allow us to basically conclude that both sliding and jumping are hard on this class of graphs.
+INFO:root:Transcribed 2080.0-2090.0s: So, how do we use this for showing hardness of token sliding and token jumping? And let's focus on token sliding for now.
+INFO:root:Transcribed 2090.0-2100.0s: Now, because it's going to be the same anyway. So, we have those cliques and some edges that go between the cliques. So, the first attempt.
+INFO:root:Transcribed 2100.0-2110.0s: Would be as follows. We will add a universal vertex to each one of the cliques, and we will call this the starting set or the starting independent set.
+INFO:root:Transcribed 2110.0-2120.0s: And then we add another universal vertex to each one of the cliques and call this the target independent set. And now basically, we have our instance of token sliding.
+INFO:root:Transcribed 2120.0-2130.0s: We want to slide everybody in S down to T. So notice that this is useful because we don't introduce any.
+INFO:root:Transcribed 2130.0-2140.0s: Of the forbidden cycles, so we are still fine, and if we could guarantee that all of the tokens will be on the creek.
+INFO:root:Transcribed 2140.0-2150.0s: Simultaneously, then this will imply an independent set in the original graph, which concludes our proof. But unfortunately, in this case,
+INFO:root:Transcribed 2150.0-2160.0s: Definitely cannot conclude that because each red token can slide independently here and then here, and then the next one can follow.
+INFO:root:Transcribed 2160.0-2170.0s: Etc., etc., etc. So, you need some way of forbidding these tokens to behave freely. We want to make ensure.
+INFO:root:Transcribed 2170.0-2180.0s: That they will all be inside the cliques simultaneously, and we will be done. And notice that we're going to have 8k squared and 2p plus 1 tokens, right?
+INFO:root:Transcribed 2180.0-2190.0s: One for each clique, and two universal vertices for each clique. So, how do we fix this simultaneity issue? Well,
+INFO:root:Transcribed 2190.0-2200.0s: Here's how we can do it. So instead of simply adding universal vertices, we're also going to add an edge between every two universal vertices.
+INFO:root:Transcribed 2200.0-2210.0s: Vertices of a clique, and then we're going to add something that we call a switch. And in this case, it's a simple edge, and the red token here.
+INFO:root:Transcribed 2210.0-2220.0s: Needs to go to the blue position. Right? So now we have one extra token inside our graph. But now notice what happens.
+INFO:root:Transcribed 2220.0-2230.0s: Any red token wants to come to the blue position, then this red token needs to be moved to this.
+INFO:root:Transcribed 2230.0-2240.0s: Position before, and if you move that token up to the blue position, then you can no longer have any of the red tokens on the universal vertices, which means.
+INFO:root:Transcribed 2240.0-2250.0s: That they will all have to be simultaneously inside the cliques, and now we get the behavior that we want. So now we
+INFO:root:Transcribed 2250.0-2260.0s: Can guarantee that if there is a sequence that takes the red tokens to the blue tokens, then some way along that sequence, the tokens.
+INFO:root:Transcribed 2260.0-2270.0s: Are all going to be within the cliques. Unfortunately, what happened here is we might have introduced some of the forbidden cycles. We can no longer guarantee that.
+INFO:root:Transcribed 2270.0-2280.0s: This is C4 up to CP3. So, what you can do in this case to solve this problem, and I'm not going to go into the details, but the
+INFO:root:Transcribed 2280.0-2290.0s: Intuition should be pretty clear: is that you can subdivide those edges, make them long enough so that you don't introduce any forbidden cycles, and add.
+INFO:root:Transcribed 2290.0-2300.0s: Appropriate tokens inside of them to get the same behavior. Because notice that the number of such edges is bounded by a function of k.
+INFO:root:Transcribed 2300.0-2310.0s: By a function of, yes, k and p in this case, right? So you can make these edges, subdivide them.
+INFO:root:Transcribed 2310.0-2320.0s: As many times as needed, add as many tokens as needed to maintain all the properties that we need and to maintain that we're going from one maximum independent set to the other.
+INFO:root:Transcribed 2320.0-2330.0s: Which will give you W1 hardness for both token sliding as well as token jumping.
+INFO:root:Transcribed 2330.0-2340.0s: All right. Questions?
+INFO:root:Transcribed 2340.0-2350.0s: No questions. All right.
+INFO:root:Transcribed 2350.0-2360.0s: So let's keep going. So now I'm going to talk about some positive, a positive result.
+INFO:root:Transcribed 2360.0-2370.0s: The result that I'm going to talk about is this one here. So I'm going to show you that on C3, C4, free graphs.
+INFO:root:Transcribed 2370.0-2380.0s: Token jumping is actually FPT and has a quadratic kernel. But again, what we will show is a stronger result. So, what
+INFO:root:Transcribed 2380.0-2390.0s: We will show is the following theorem. What we will show is can be summarized as follows. So if you look
+INFO:root:Transcribed 2390.0-2400.0s: At any graph or at any instance of the token jumping problem. So remember: an instance of token jumping has the input graph, the starting set.
+INFO:root:Transcribed 2400.0-2410.0s: The target set and k as the number of tokens. So let me try and draw something here. So if you look at
+INFO:root:Transcribed 2410.0-2420.0s: Your graph, you can kind of decompose it into something which is more or less as follows. So you have s, you have t.
+INFO:root:Transcribed 2420.0-2430.0s: Their intersection need not be empty, and then you have the neighborhood of S union T, and then you have the rest.
+INFO:root:Transcribed 2430.0-2440.0s: Of the graph. So we're going to call the rest of the graph H, and we're going to call the closed neighborhood of SU.
+INFO:root:Transcribed 2440.0-2450.0s: Union T, or if you will, this yellow part here. We call that J, right? So we can think of our problem, of our graph.
+INFO:root:Transcribed 2450.0-2460.0s: As being decomposed into those two areas, H and J. Okay, so the theorem states the following: if H
+INFO:root:Transcribed 2460.0-2470.0s: H is epsilon sparse, where epsilon sparse means that the number of edges is at most n squared minus epsilon, positive epsilon.
+INFO:root:Transcribed 2470.0-2480.0s: So, if H is epsilon sparse and J is C3, C43, then the problem admits a kernel.
+INFO:root:Transcribed 2480.0-2490.0s: Which is that big? K squared plus k into 1 plus 1 over epsilon. So notice now that we only need that h is epsilon's part.
+INFO:root:Transcribed 2490.0-2500.0s: And we only require C3, C4 freeness inside J, which is S union T closed neighborhood.
+INFO:root:Transcribed 2500.0-2510.0s: Close neighborhood of S union T. And this idea is actually not a new idea. So this idea is.
+INFO:root:Transcribed 2510.0-2520.0s: Is okay. I had the drawing here. I should have used it. So the idea comes from, has been used before, and it's what we call the buff.
+INFO:root:Transcribed 2520.0-2530.0s: Technique for the token jumping problem. And the intuition behind the buffer technique is very simple. So if I have S union T, but somewhere in
+INFO:root:Transcribed 2530.0-2540.0s: The graph, which is not in the closed neighborhood of S union T, I have a case-sized independent set, then you are done. Right? If I have a case-sized set,
+INFO:root:Transcribed 2540.0-2550.0s: Independent set in H, then you're done. You can basically take all the tokens on S, jump them into those independent.
+INFO:root:Transcribed 2550.0-2560.0s: Yellow vertices in H and then jump them back to T. So, in some sense, when H has a large independent set, that's the easy case.
+INFO:root:Transcribed 2560.0-2570.0s: Right, you're done. If you can find a large enough independent set in H, you're done, and that's what we call the buffer technique because it's been also used.
+INFO:root:Transcribed 2570.0-2580.0s: Show that the problem is FPT on planar graphs, for example, or K3J3 graphs, so graphs without large byte links.
+INFO:root:Transcribed 2580.0-2590.0s: So, so it's a well-known technique. All right. So, what do we show?
+INFO:root:Transcribed 2590.0-2600.0s: So, we're going to use the buffer technique and we're going to combine it with something else. So, we show that you have a yes.
+INFO:root:Transcribed 2600.0-2610.0s: instance whenever one of those two conditions is true the first condition is that h is epsilon sparse and can
+INFO:root:Transcribed 2610.0-2620.0s: Contains more than this many vertices. And this is relatively easy when you contain this many vertices and you are
+INFO:root:Transcribed 2620.0-2630.0s: Epsilon sparse, then you will have a k-size independent set. And that's basically the buffer technique. When H is epsilon sparse and has that many vertices or more,
+INFO:root:Transcribed 2630.0-2640.0s: Then H is guaranteed to have an independent set of size K, and you're done. So now you are stuck with what happens inside J or the
+INFO:root:Transcribed 2640.0-2650.0s: Closed neighborhood of S union T. And it turns out there, if you have C3, C4 freeness, the only thing you need on top of that.
+INFO:root:Transcribed 2650.0-2660.0s: To guarantee a yes instance is a vertex of degree at least 3k. So if you have C3C4 phenus inside.
+INFO:root:Transcribed 2660.0-2670.0s: J and the vertex of degree 3k, then again you get a yes instance. So let me prove those two statements.
+INFO:root:Transcribed 2670.0-2680.0s: Separately, because they will be basically what we need for the final theorem, for the final kernel.
+INFO:root:Transcribed 2680.0-2690.0s: So, the first lemma, as I told you, if H is epsilon sparse and has more than this many vertices, then it's a yes instance because you have a case as independent.
+INFO:root:Transcribed 2690.0-2700.0s: Set in H. The idea of this proof is simple. It's a counting argument. And what you need to do basically first is to show that H must contain.
+INFO:root:Transcribed 2700.0-2710.0s: A vertex of degree less than n over k, and then basically you apply the standard greedy packing algorithm for constructing an independent set of size k.
+INFO:root:Transcribed 2710.0-2720.0s: And the reason you show that, and the way you show that H has a vertex of degree less than n over k is, again, standard counting argument.
+INFO:root:Transcribed 2720.0-2730.0s: Handshaking lemma, right? So if the minimum degree in h was at least n over k, then the number of edges would be at least n squared over 2k, which will
+INFO:root:Transcribed 2730.0-2740.0s: Only happen in an epsilon sparse graph when n is less than or equal to k to the power 1 over epsilon.
+INFO:root:Transcribed 2740.0-2750.0s: And the rest of the proof is basically an induction on k. Okay, and so that shows you that when you do have an epsilon sparse graph with more.
+INFO:root:Transcribed 2750.0-2760.0s: Than this many words C's, then we have a yes instance. All right, so how about the second part of the claim?
+INFO:root:Transcribed 2760.0-2770.0s: So, now what happens if we have a C3C43J that has a vertex of degree 3K? Well, let's see what happens. So, if we have a
+INFO:root:Transcribed 2770.0-2780.0s: Vertex of degree 3k, and I'm gonna circle it here in yellow. So, how can the neighborhood of that vertex look? Well, we know that j is.
+INFO:root:Transcribed 2780.0-2790.0s: Is C33, so the blue edges cannot exist, which means that the neighborhood of the yellow vertex is an independent set inside J.
+INFO:root:Transcribed 2790.0-2800.0s: Not in the whole graph. Well, in fact, in the whole graph, well, no, because we're only talking about J as a subgraph here.
+INFO:root:Transcribed 2800.0-2810.0s: Right, so the blue edges cannot exist because otherwise we will get a C3 inside J. All right.
+INFO:root:Transcribed 2810.0-2820.0s: So now let's look at the other vertices in S union T. The second observation that you need is that.
+INFO:root:Transcribed 2820.0-2830.0s: Any vertex other than the yellow vertex can have at most one neighbor in common with the yellow vertex. Because if you do have two neighbors in common,
+INFO:root:Transcribed 2830.0-2840.0s: Then you will get a C4. So, now what happens if we have three K-vertices in the name?
+INFO:root:Transcribed 2840.0-2850.0s: Of the yellow vertex? Well, at most 2k of them can be connected to some vertex in S union T, and you will get at least.
+INFO:root:Transcribed 2850.0-2860.0s: K of them, some k of them here that are only connected to the yellow vertex, and so now basically.
+INFO:root:Transcribed 2860.0-2870.0s: Instead of using a buffer inside H, we have just found a buffer inside J and we can use the same strategy. We can jump all the
+INFO:root:Transcribed 2870.0-2880.0s: Tokens here, starting, of course, by the yellow token, and then jump them to where they need to go.
+INFO:root:Transcribed 2880.0-2890.0s: So now combining those two observations, lemmas together.
+INFO:root:Transcribed 2890.0-2900.0s: Together, if you will, we get the following theorem. So if H is alpha sparse and J is C3C43, then the problem admits a kernel on.
+INFO:root:Transcribed 2900.0-2910.0s: On this many vertices. And it's basically a simple application of the previous two lemmas. If we have more than this many vertices in H, it's a trivial yes.
+INFO:root:Transcribed 2910.0-2920.0s: instance. If J has a vertex of degree 3k or more, it's a trivial yes instance. And now you combine all of this together. We know that S union T is
+INFO:root:Transcribed 2920.0-2930.0s: Size at most 2k. We know that the neighborhood of S union T is of size at most 2k times 3k, which is roughly 6k squared. And now we know.
+INFO:root:Transcribed 2930.0-2940.0s: That the rest of the graph has at most that many vertices. So basically, you sum up those numbers and you get this bound.
+INFO:root:Transcribed 2940.0-2950.0s: All right. So, how does this theorem impact?
+INFO:root:Transcribed 2950.0-2960.0s: Imply the result that I promised you to start with. So that token jumping and token sliding admit
+INFO:root:Transcribed 2960.0-2970.0s: Kernel with order k square vertices. I mean, it also holds for bipartite C43 graphs, right? Obviously, because they are C3, C43.
+INFO:root:Transcribed 2970.0-2980.0s: So, how do you get the kernel? Well, we know that J cannot contain more than 6k squared minus 2k vertices.
+INFO:root:Transcribed 2980.0-2990.0s: We know from another theorem from another paper that C3 free graphs with k squared over log k vertices.
+INFO:root:Transcribed 2990.0-3000.0s: Must have an independent set of size at least k. And now we know that if h contains more than this many vertices, then we will get a yes instance as well.
+INFO:root:Transcribed 3000.0-3010.0s: Right, so it becomes an immediate consequence of the previous theorem, but the previous theorem is even more general than this corollary. So, this corollary.
+INFO:root:Transcribed 3010.0-3020.0s: Does not really use the full power of this theorem. All right, that's it. I think I'm pretty much on time.
+INFO:root:Transcribed 3020.0-3030.0s: If you have questions, I will take them now.
+INFO:root:Transcribed 3030.0-3040.0s: So it was 55 minutes, right, for the talk. I did not go under the time. It's fine. We usually allow plus-minus 10 minutes. It's all right.
+INFO:root:Transcribed 3040.0-3050.0s: So, I have a question about token sliding. Yes. So, how crucial what happens if one
+INFO:root:Transcribed 3050.0-3060.0s: Does not restrict the independent sets during the configuration to be not of the same size? Is that very critical?
+INFO:root:Transcribed 3060.0-3070.0s: For the difficulty or the easiness of the problem? Well, you have to be careful how you define that because in token sliding, sliding, token.
+INFO:root:Transcribed 3070.0-3080.0s: Cannot leave the graph that's correct, but the independent set sequence, all the independent sets have to be the same size, right? Or have not
+INFO:root:Transcribed 3080.0-3090.0s: Not some token disappeared at some point, and I'm not sure how it disappeared. Right? Because you start with something of size K and you're going.
+INFO:root:Transcribed 3090.0-3100.0s: To something of size k, you cannot leave the graph unless you define it in some way, so you will remain of size k throughout.
+INFO:root:Transcribed 3100.0-3110.0s: But you can become slightly larger, and but where does the new token come from? Okay, okay, so there is.
+INFO:root:Transcribed 3110.0-3120.0s: There is a third rule that I did not tell you about, which is called token addition and removal. Under that rule, we actually allow you to.
+INFO:root:Transcribed 3120.0-3130.0s: Remove vertices and add vertices as long as you remain an independent tent of size at least k.
+INFO:root:Transcribed 3130.0-3140.0s: Does that answer your question? Yeah, yeah, yeah, yeah, yeah. But in fact, it was shown that it was shown that.
+INFO:root:Transcribed 3140.0-3150.0s: So, addition and removal is equivalent to token jumping. I see. I see. Right? It doesn't, it never makes sense to add more tokens to your graph.
+INFO:root:Transcribed 3150.0-3160.0s: You don't need them. You're only making your life harder, intuitively speaking.
+INFO:root:Transcribed 3160.0-3170.0s: So, the other question that I had is: I mean, I heard I so, is it possible to view this whole problem?
+INFO:root:Transcribed 3170.0-3180.0s: On an exponential size graph where every vertex corresponds to an independent set in the original graph.
+INFO:root:Transcribed 3180.0-3190.0s: And then you have edges between two vertices. If there is an edge between two vertices of the independent set, and now you are doing a reachability quest.
+INFO:root:Transcribed 3190.0-3200.0s: Is that a meaningful way to think about this? But that's exactly what we're doing. But so, the way you define your adjacency, I think.
+INFO:root:Transcribed 3200.0-3210.0s: So, you mean you define, you make two independent sets adjacent if one can be reached from the other via a single slide or a single jump? Exactly, yeah, one edge. Yeah, that is one pair.
+INFO:root:Transcribed 3210.0-3220.0s: UND, which is adjacent. But that's exactly what we're doing. Okay, okay. Yeah. Right? I mean, if you because we're looking at it at Algeria.
+INFO:root:Transcribed 3220.0-3230.0s: Algorithms here, we kind of forget the structural picture behind it. But this algorithm is finding a path in this graph that you're describing. Yeah, yeah, that's it.
+INFO:root:Transcribed 3230.0-3240.0s: And what we're saying is, you can do it in FPT time or not, depending on the problem we're talking about.
+INFO:root:Transcribed 3240.0-3250.0s: Hi, Amir. Hi, hi. How are you?
+INFO:root:Transcribed 3250.0-3260.0s: Yeah, I'm good. So, I had a question. So, do problems remain equally hard if we bound the, if we have a restriction on the
+INFO:root:Transcribed 3260.0-3270.0s: Number of times we can move the token to a particular vertex. The number of times you can move.
+INFO:root:Transcribed 3270.0-3280.0s: A token to a particular vertex, or like the number of times the tokens can be moved to a vertex. Well, that's definitely going to.
+INFO:root:Transcribed 3280.0-3290.0s: Change the complexity in at least intuitively speaking, right? Because now you're saying maybe it will, if you're bounding that by a constant, then.
+INFO:root:Transcribed 3290.0-3300.0s: You might be saying that I'm not allowing exponentially large sequences anymore. But in terms of exactly how the complexity changes, I don't have.
+INFO:root:Transcribed 3300.0-3310.0s: Answers. I think it's a very nice question to pose. Even in terms of non-parametrized complexity, standard complexity, I think that.
+INFO:root:Transcribed 3310.0-3320.0s: That would be a very interesting question because it will definitely affect the behavior. I'm not sure exactly how yet. I don't know.
+INFO:root:Transcribed 3320.0-3330.0s: Of any results that ask this particular question. Okay, so I had one more question in the W harness result that you presented.
+INFO:root:Transcribed 3330.0-3340.0s: Do you know what is the like the length of the serve, the length of the changes, actually, the number of changes or flips that you make in your independent set?
+INFO:root:Transcribed 3340.0-3350.0s: This is just, yeah, yes, yes, yes. We do. So, here the number of changes is going to be very, it's basically going to be the
+INFO:root:Transcribed 3350.0-3360.0s: Shortest possible sequence. So it's basically going to be. So if you think about the simple construction, this one.
+INFO:root:Transcribed 3360.0-3370.0s: It's basically literally gonna be: these guys are gonna move here, so each is gonna cost me one.
+INFO:root:Transcribed 3370.0-3380.0s: The slide, and then they're all gonna. And now, this guy is gonna move here, and now I will pay one slide for each one here. Now, this is the
+INFO:root:Transcribed 3380.0-3390.0s: Simplified version of it. Once you go to the complete version of it, you have some extra slides within the path, but you can also count those. Okay.
+INFO:root:Transcribed 3390.0-3400.0s: So, but does this mean that so does this mean that at a particular vertex we are placing the token at most once?
+INFO:root:Transcribed 3400.0-3410.0s: In this case, yes. Okay. In this case, yes. Okay. So this problem should be hard even if we bound the number.
+INFO:root:Transcribed 3410.0-3420.0s: Of times tokens can be moved to a vertex, right? Uh, yes, okay, yes, so so here in this case, yes.
+INFO:root:Transcribed 3420.0-3430.0s: Absolutely, okay. Thanks. So, Akanksha, I have a remark about your question. So, if a vertex
+INFO:root:Transcribed 3430.0-3440.0s: If a vertex cannot get a token twice, then it somehow seems to be selecting disjoint independent sets.
+INFO:root:Transcribed 3440.0-3450.0s: A sequence of them, and that may have some bearing on coloring, just a top-level thought.
+INFO:root:Transcribed 3450.0-3460.0s: So, actually, for the W harness case that Amir presented, it is exactly the case, right? So, we are not allowed to move the token like token.
+INFO:root:Transcribed 3460.0-3470.0s: Twice on the same vertex. Yeah. So I didn't get your point of me being so getting this disjoint independence, it's actually.
+INFO:root:Transcribed 3470.0-3480.0s: Because if you say, if you think of it from my the way I thought about it, right, that you are actually trying to find a path in a large graph where every vertex corresponds to an independent.
+INFO:root:Transcribed 3480.0-3490.0s: Set and you move from one independent set to another. So, but we can only move from one independent set to the other if the
+INFO:root:Transcribed 3490.0-3500.0s: Of the changes is like in case of token sliding, it's one probably. Yeah, it has to be that for the
+INFO:root:Transcribed 3500.0-3510.0s: So it looks to me that you are asking for a collection of independent sets which are vertex disjoint.
+INFO:root:Transcribed 3510.0-3520.0s: If the sequence of independent states which are vertex disjoint, now so if I may, I think Akasha's question would be more relevant.
+INFO:root:Transcribed 3520.0-3530.0s: In a place where we don't have a monotone sequence, meaning a sequence. So we need a version of the problem or some cases of the problem where a version.
+INFO:root:Transcribed 3530.0-3540.0s: The vertex has to be visited multiple times to find solutions. And that is known to be the case for some versions or some statements of the problem.
+INFO:root:Transcribed 3540.0-3550.0s: And in fact, Akancheso, so this is also, this was the crucial difference between P-space completeness and NP-completeness of sliding versus jumping in bipertype graphs.
+INFO:root:Transcribed 3550.0-3560.0s: So, it was because we were able to show that no vertex will be visited more than once in the other problem. So, that's why.
+INFO:root:Transcribed 3560.0-3570.0s: It's definitely an interesting question to pose, but you have to be careful in what context you pose it. Great. I don't know if that.
+INFO:root:Transcribed 3570.0-3580.0s: Kind of settles, answers your question. Yes, yes, it does. All right. Thanks. You're welcome.
+INFO:root:Transcribed 3580.0-3590.0s: Any more questions?
+INFO:root:Transcribed 3590.0-3600.0s: 
+INFO:root:Transcribed 3600.0-3610.0s: 
+INFO:root:Transcribed 3610.0-3620.0s: 
+INFO:root:Transcribed 3620.0-3630.0s: Stop, yeah. I don't think there are any more questions. I will just once again announce the parametrized algorithms 301 workshop, which is going to happen.
+INFO:root:Transcribed 3630.0-3640.0s: In December, in the link has been posted once again in the chat. Some advanced topics in parameterized complexity will be discussed. Those interested can have a
+INFO:root:Transcribed 3640.0-3650.0s: Look and register for it, and yeah, if there are still any more questions, please ask away.
+INFO:root:Transcribed 3650.0-3660.0s: 
+INFO:root:Transcribed 3660.0-3670.0s: 
+INFO:root:Transcribed 3670.0-3680.0s: So, anyone can register for the school?
+INFO:root:Transcribed 3680.0-3690.0s: Anyone can. Good. Yeah, it's free and it's online, and yeah, it's open to everyone. Awesome. So I can share it with my students.
+INFO:root:Transcribed 3690.0-3700.0s: As well, of course, of course, please do. Yeah, that will be good. And we assume some basic understanding of parameterized algorithms, but we have already shared a link on the page.
+INFO:root:Transcribed 3700.0-3710.0s: where students can go and go through some previous lectures and parameterize algorithms if they wish to just brace up or revise.
+INFO:root:Transcribed 3710.0-3720.0s: Stuff all right, so
+INFO:root:Transcribed 3720.0-3730.0s: I guess okay. I don't think there are any more questions, so maybe this is a good time to wrap up. So, thank you once again, uh, Professor Amir.
+INFO:root:Transcribed 3730.0-3740.0s: For agreeing to give the talk. It was really nice to have you, and it was really good to have something different than what we usually hear in every parent-based complexity talk, at least.
+INFO:root:Transcribed 3740.0-3750.0s: Most of them. So, and yeah, these are really interesting problems to think upon. And thank you to the audience for being with us. And that's it for today.
+INFO:root:Transcribed 3750.0-3757.6s: We wrap up. See you all next week. Thank you. Bye. Thank you. Bye-bye.

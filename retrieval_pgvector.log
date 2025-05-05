@@ -1,0 +1,23 @@
+INFO:root:Set PyTorch to use CPU
+INFO:root:Connected to postgres database
+INFO:root:Recreated rag database
+INFO:root:Connected to rag database
+INFO:root:pgvector extension enabled
+INFO:root:Database tables created
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): huggingface.co:443
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://huggingface.co:443 "GET /api/models/sentence-transformers/all-MiniLM-L6-v2/revision/main HTTP/1.1" 200 6739
+INFO:root:Loaded 362 text and 63 image entries
+INFO:root:Inserted 362 text and 63 image embeddings
+INFO:root:pgvector indexes created
+INFO:root:Text embeddings count: 362, Image embeddings count: 63
+INFO:root:Found 6 segments with 'combinatorial reconfiguration': [(8, 90.0, 'so, before i start, i should point out that this is joint work that started back in the combinatorial reconfiguration workshop almost two years.'), (11, 120.0, 'introduction to combinatorial reconfiguration because i know many of you might not have seen such problems. then i will talk.'), (18, 190.0, "feel whenever i say something that doesn't make sense. hopefully, that won't happen too often. all right, so what is combinatorial reconfiguration?"), (27, 280.0, "about 15 puzzle, it's because it's really, i mean, the way you solve the 15 puzzle tells you a lot about the area of combinatorial reconfiguration."), (38, 390.0, 'area of combinatorial reconfiguration. so, a couple of examples about structural questions would be: well, the simplest one would be: how big is this?'), (131, 1320.0, 'more about token sliding and token jumping. these problems have been at the heart of the area of combinatorial reconfiguration. they have been studied so much.')]
+DEBUG:root:Query: What is combinatorial reconfiguration?, Modality: text, Index: ivfflat, Query embedding: [-0.05043375 -0.05046944 -0.04281813 -0.03082905 -0.0628535 ]..., Results: [{'data': {'id': 16, 'start_time': 170.0, 'end_time': 180.0, 'text': 'on the big picture and the questions to be asked and answered. so, if you have any questions along the way, please feel free to interrupt me.', 'score': 0.8580614412986388}, 'score': 0.8580614412986388}, {'data': {'id': 9, 'start_time': 100.0, 'end_time': 110.0, 'text': "years ago. and it's joint work with valentin barchet, nicola bousquet, clement dalard, and carl lomer, who is my master's student.", 'score': 0.6492901637938671}, 'score': 0.6492901637938671}, {'data': {'id': 184, 'start_time': 1850.0, 'end_time': 1860.0, 'text': 'polynomial regardless. all right. so, and the rest.', 'score': 0.6212724076943166}, 'score': 0.6212724076943166}]
+DEBUG:root:Query: What is combinatorial reconfiguration?, Modality: text, Index: hnsw, Query embedding: [-0.05043375 -0.05046944 -0.04281813 -0.03082905 -0.0628535 ]..., Results: [{'data': {'id': 16, 'start_time': 170.0, 'end_time': 180.0, 'text': 'on the big picture and the questions to be asked and answered. so, if you have any questions along the way, please feel free to interrupt me.', 'score': 0.8580614412986388}, 'score': 0.8580614412986388}, {'data': {'id': 9, 'start_time': 100.0, 'end_time': 110.0, 'text': "years ago. and it's joint work with valentin barchet, nicola bousquet, clement dalard, and carl lomer, who is my master's student.", 'score': 0.6492901637938671}, 'score': 0.6492901637938671}, {'data': {'id': 184, 'start_time': 1850.0, 'end_time': 1860.0, 'text': 'polynomial regardless. all right. so, and the rest.', 'score': 0.6212724076943166}, 'score': 0.6212724076943166}]
