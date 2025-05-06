@@ -1,0 +1,12 @@
+{
+  "top_1_correct": 0,
+  "top_3_correct": 0,
+  "top_5_correct": 2,
+  "rejection_correct": 2,
+  "total_answerable": 10,
+  "total_unanswerable": 5,
+  "top_1_percent": 0.0,
+  "top_3_percent": 0.0,
+  "top_5_percent": 20.0,
+  "rejection_percent": 40.0
+}

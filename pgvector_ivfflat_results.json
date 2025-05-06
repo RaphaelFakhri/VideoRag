@@ -1,0 +1,149 @@
+[
+  {
+    "query": "What topic will the speaker give a gentle introduction to, assuming the audience may not be familiar with it?",
+    "result": "Unanswerable",
+    "answerable": false
+  },
+  {
+    "query": "What are the two main reconfiguration models discussed for the independent set problem (phrased as token placement)?",
+    "result": "Unanswerable",
+    "answerable": false
+  },
+  {
+    "query": "According to the speaker, what makes combinatorial reconfiguration problems enjoyable to work on?",
+    "result": {
+      "data": {
+        "id": 16,
+        "start_time": 170.0,
+        "end_time": 180.0,
+        "text": "on the big picture and the questions to be asked and answered. so, if you have any questions along the way, please feel free to interrupt me.",
+        "score": 0.775505854159246
+      },
+      "score": 0.775505854159246
+    },
+    "answerable": true
+  },
+  {
+    "query": "Who collaborated with the speaker on the work presented?",
+    "result": "Unanswerable",
+    "answerable": false
+  },
+  {
+    "query": "What puzzle is used as the primary example to introduce combinatorial reconfiguration?",
+    "result": {
+      "data": {
+        "id": 16,
+        "start_time": 170.0,
+        "end_time": 180.0,
+        "text": "on the big picture and the questions to be asked and answered. so, if you have any questions along the way, please feel free to interrupt me.",
+        "score": 0.7040924606268144
+      },
+      "score": 0.7040924606268144
+    },
+    "answerable": true
+  },
+  {
+    "query": "How is the \"reconfiguration graph\" or \"state space\" defined in the context of the 15-puzzle example?",
+    "result": {
+      "data": {
+        "id": 26,
+        "start_time": 270.0,
+        "end_time": 280.0,
+        "text": "15 and this puzzle. and i have a link here if you want to actually play the puzzle online, which is pretty fun. so, why do i start my talk by talking?",
+        "score": 0.7943003414362775
+      },
+      "score": 0.7943003414362775
+    },
+    "answerable": true
+  },
+  {
+    "query": "What is the reconfiguration rule described for the graph k-coloring problem?",
+    "result": {
+      "data": {
+        "id": 69,
+        "start_time": 700.0,
+        "end_time": 710.0,
+        "text": "and beta. and the question is: can you recolor alpha to get to beta? but you need to recolor one vertex at a time, and you need",
+        "score": 0.7741720080375671
+      },
+      "score": 0.7741720080375671
+    },
+    "answerable": true
+  },
+  {
+    "query": "Which complexity class contains decision problems solvable with a polynomial amount of space, and why is it relevant to reconfiguration problems?",
+    "result": {
+      "data": {
+        "id": 105,
+        "start_time": 1060.0,
+        "end_time": 1070.0,
+        "text": "token jumping, token sliding, and a little bit about classical complexity. i know everybody here knows about p and n p, so i'm not going to talk.",
+        "score": 0.8142560124397278
+      },
+      "score": 0.8142560124397278
+    },
+    "answerable": true
+  },
+  {
+    "query": "What surprising complexity result is mentioned regarding the 3-recoloring problem compared to the standard 3-coloring problem?",
+    "result": {
+      "data": {
+        "id": 118,
+        "start_time": 1190.0,
+        "end_time": 1200.0,
+        "text": "however, it turns out that if you try to solve the recoloring problem for k equals 3, it's actually polynomial time solvable.",
+        "score": 0.7015632809140266
+      },
+      "score": 0.7015632809140266
+    },
+    "answerable": true
+  },
+  {
+    "query": "What parameters are mentioned for studying the parameterized complexity of token reconfiguration problems?",
+    "result": "Unanswerable",
+    "answerable": false
+  },
+  {
+    "query": "What specific algorithm allows the 3-recoloring problem to be solved in polynomial time?",
+    "result": "Unanswerable",
+    "answerable": false
+  },
+  {
+    "query": "What is the exact diameter (\"God's number\") of the reconfiguration graph for the standard 15-puzzle?",
+    "result": "Unanswerable",
+    "answerable": false
+  },
+  {
+    "query": "Are there specific examples of how token sliding reconfiguration is applied in robotics path planning?",
+    "result": "Unanswerable",
+    "answerable": false
+  },
+  {
+    "query": "What is the complexity of the token sliding problem on even-hole-free graphs?",
+    "result": {
+      "data": {
+        "id": 162,
+        "start_time": 1630.0,
+        "end_time": 1640.0,
+        "text": "okay, and basically the bipartite bounded degree graphs was just a stepping stone to get to the bipartite.",
+        "score": 0.7008587330835683
+      },
+      "score": 0.7008587330835683
+    },
+    "answerable": true
+  },
+  {
+    "query": "What was the specific name or location of the combinatorial reconfiguration workshop where the joint work for this project began almost two years prior to the talk?",
+    "result": {
+      "data": {
+        "id": 6,
+        "start_time": 70.0,
+        "end_time": 80.0,
+        "text": "and it's a really, i mean, the questions are so nice to state, so easy to state, and they are accessible really to researchers.",
+        "score": 0.7508637158518359
+      },
+      "score": 0.7508637158518359
+    },
+    "answerable": true
+  }
+]

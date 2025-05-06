@@ -1,0 +1,77 @@
+[
+    {
+      "query": "What topic will the speaker give a gentle introduction to, assuming the audience may not be familiar with it?",
+      "answerable": true,
+      "ground_truth": {"start_time": 30.0, "text": "...many of you maybe have not seen this area of combinatorial reconfiguration..."}
+    },
+    {
+      "query": "What are the two main reconfiguration models discussed for the independent set problem (phrased as token placement)?",
+      "answerable": true,
+      "ground_truth": {"start_time": 780.0, "text": "...defining the rule for independent sets... token jumping... token sliding..."}
+    },
+    {
+      "query": "According to the speaker, what makes combinatorial reconfiguration problems enjoyable to work on?",
+      "answerable": true,
+      "ground_truth": {"start_time": 70.0, "text": "...the questions are so nice to state... accessible really to researchers at any level..."}
+    },
+    {
+      "query": "Who collaborated with the speaker on the work presented?",
+      "answerable": true,
+      "ground_truth": {"start_time": 100.0, "text": "...joint work with valentin barchet, nicola bousquet, clement dalard, and carl lomer..."}
+    },
+    {
+      "query": "What puzzle is used as the primary example to introduce combinatorial reconfiguration?",
+      "answerable": true,
+      "ground_truth": {"start_time": 200.0, "text": "...the best way i think to introduce is with a familiar example... the 15 puzzle game."}
+    },
+    {
+      "query": "How is the \"reconfiguration graph\" or \"state space\" defined in the context of the 15-puzzle example?",
+      "answerable": true,
+      "ground_truth": {"start_time": 300.0, "text": "...we have one vertex or one node in this graph for each possible configuration..."}
+    },
+    {
+      "query": "What is the reconfiguration rule described for the graph k-coloring problem?",
+      "answerable": true,
+      "ground_truth": {"start_time": 700.0, "text": "...can you recolor alpha to get to beta? but you need to recolor one vertex at a time..."}
+    },
+    {
+      "query": "Which complexity class contains decision problems solvable with a polynomial amount of space, and why is it relevant to reconfiguration problems?",
+      "answerable": true,
+      "ground_truth": {"start_time": 1070.0, "text": "...p-space is the set of all decision problems that can be solved using a polynomial amount of space..."}
+    },
+    {
+      "query": "What surprising complexity result is mentioned regarding the 3-recoloring problem compared to the standard 3-coloring problem?",
+      "answerable": true,
+      "ground_truth": {"start_time": 1180.0, "text": "...coloring is np-complete even for k equals 3... recoloring problem for k equals 3, it's actually polynomial time solvable."}
+    },
+    {
+      "query": "What parameters are mentioned for studying the parameterized complexity of token reconfiguration problems?",
+      "answerable": true,
+      "ground_truth": {"start_time": 1440.0, "text": "...obvious parameter would be the number of tokens... tree width or path width..."}
+    },
+    {
+      "query": "What specific algorithm allows the 3-recoloring problem to be solved in polynomial time?",
+      "answerable": false,
+      "ground_truth": null
+    },
+    {
+      "query": "What is the exact diameter (\"God's number\") of the reconfiguration graph for the standard 15-puzzle?",
+      "answerable": false,
+      "ground_truth": null
+    },
+    {
+      "query": "Are there specific examples of how token sliding reconfiguration is applied in robotics path planning?",
+      "answerable": false,
+      "ground_truth": null
+    },
+    {
+      "query": "What is the complexity of the token sliding problem on even-hole-free graphs?",
+      "answerable": false,
+      "ground_truth": null
+    },
+    {
+      "query": "What was the specific name or location of the combinatorial reconfiguration workshop where the joint work for this project began almost two years prior to the talk?",
+      "answerable": false,
+      "ground_truth": null
+    }
+  ]

@@ -11,44 +11,39 @@ logging.basicConfig(level=logging.DEBUG, filename="retrieval_pgvector.log")
 torch.set_default_device("cpu")
 logging.info("Set PyTorch to use CPU")
 
-# Connect to postgres database to manage rag database
+# Initialize database connection
+def connect_to_db(dbname):
+    try:
+        conn = psycopg2.connect(
+            dbname=dbname,
+            user="postgres",
+            password="postgres123",
+            host="localhost",
+            port="5432"
+        )
+        return conn
+    except Exception as e:
+        logging.error(f"Connection to {dbname} failed: {e}")
+        raise e
+
+# Recreate rag database
 try:
-    conn = psycopg2.connect(
-        dbname="postgres",
-        user="postgres",
-        password="postgres123",
-        host="localhost",
-        port="5432"
-    )
+    conn = connect_to_db("postgres")
     conn.set_session(autocommit=True)
     cur = conn.cursor()
-    logging.info("Connected to postgres database")
-except Exception as e:
-    logging.error(f"Connection to postgres database failed: {e}")
-    raise e
-
-# Drop and recreate rag database
-try:
     cur.execute("SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'rag' AND pid <> pg_backend_pid()")
     cur.execute("DROP DATABASE IF EXISTS rag")
     cur.execute("CREATE DATABASE rag")
     logging.info("Recreated rag database")
+    cur.close()
+    conn.close()
 except Exception as e:
     logging.error(f"Database recreation failed: {e}")
     raise e
-finally:
-    cur.close()
-    conn.close()
 
 # Connect to rag database
 try:
-    conn = psycopg2.connect(
-        dbname="rag",
-        user="postgres",
-        password="postgres123",
-        host="localhost",
-        port="5432"
-    )
+    conn = connect_to_db("rag")
     cur = conn.cursor()
     logging.info("Connected to rag database")
 except Exception as e:
@@ -151,7 +146,7 @@ except Exception as e:
     logging.error(f"Index creation failed: {e}")
     raise e
 
-def search_pgvector(query, k=3, modality="text", index_type="hnsw"):
+def search_pgvector(query, k=5, modality="text", index_type="hnsw"):
     try:
         query_emb = text_model.encode([query])[0]
         query_emb = query_emb / np.linalg.norm(query_emb)
@@ -166,29 +161,79 @@ def search_pgvector(query, k=3, modality="text", index_type="hnsw"):
             (query_emb_str, k)
         )
         results = [{"data": dict(zip([desc[0] for desc in cur.description], row)), "score": row[-1]} for row in cur.fetchall()]
-        logging.debug(f"Query: {query}, Modality: {modality}, Index: {index_type}, Query embedding: {query_emb[:5]}..., Results: {results}")
+        logging.debug(f"Query: {query}, Modality: {modality}, Index: {index_type}, Results: {results}")
         return results
     except Exception as e:
-        logging.error(f"pgvector search failed: {e}")
+        logging.error(f"pgvector search failed for query '{query}': {e}")
         return []
-
-# Test
+# Load gold test set
 try:
-    cur.execute("SELECT COUNT(*) FROM text_embeddings")
-    text_count = cur.fetchone()[0]
-    if text_count == 0:
-        raise ValueError("No text embeddings in database")
-    cur.execute("SELECT COUNT(*) FROM image_embeddings")
-    image_count = cur.fetchone()[0]
-    logging.info(f"Text embeddings count: {text_count}, Image embeddings count: {image_count}")
-    cur.execute("SELECT id, start_time, text FROM text_embeddings WHERE text ILIKE '%combinatorial reconfiguration%'")
-    segment = cur.fetchall()
-    logging.info(f"Found {len(segment)} segments with 'combinatorial reconfiguration': {segment}")
-    query = "What is combinatorial reconfiguration?"
-    results_ivfflat = search_pgvector(query, k=3, index_type="ivfflat")
-    results_hnsw = search_pgvector(query, k=3, index_type="hnsw")
-    print("IVFFlat:", json.dumps(results_ivfflat, indent=2))
-    print("HNSW:", json.dumps(results_hnsw, indent=2))
-finally:
+    with open("gold_test_set.json", "r") as f:
+        test_set = json.load(f)
+    logging.info(f"Loaded {len(test_set)} gold test questions")
+except Exception as e:
+    logging.error(f"Gold test set loading failed: {e}")
+    raise e
+# Process gold test set for IVFFlat and HNSW
+for index_type in ["ivfflat", "hnsw"]:
+    results = []
+    benchmark = {
+        "top_1_correct": 0,
+        "top_3_correct": 0,
+        "top_5_correct": 0,
+        "rejection_correct": 0,
+        "total_answerable": sum(1 for item in test_set if item["answerable"]),
+        "total_unanswerable": sum(1 for item in test_set if not item["answerable"])
+    }
+
+    for item in test_set:
+        query = item["query"]
+        is_answerable = item["answerable"]
+        ground_truth = item["ground_truth"]
+        
+        # Search with k=5 for benchmarking
+        search_results = search_pgvector(query, k=5, index_type=index_type)
+        
+        # Top-1 result for display
+        if search_results and search_results[0]["score"] > 0.7:
+            top_1 = search_results[0]
+            results.append({"query": query, "result": top_1, "answerable": True})
+        else:
+            results.append({"query": query, "result": "Unanswerable", "answerable": False})
+        
+        # Benchmarking
+        if is_answerable:
+            gt_start_time = ground_truth["start_time"]
+            for k in [1, 3, 5]:
+                top_k = search_results[:k]
+                if any(abs(r["data"]["start_time"] - gt_start_time) < 10.0 for r in top_k):
+                    benchmark[f"top_{k}_correct"] += 1
+        else:
+            if not search_results or search_results[0]["score"] < 0.7:
+                benchmark["rejection_correct"] += 1
+
+    # Calculate percentages
+    for k in [1, 3, 5]:
+        benchmark[f"top_{k}_percent"] = (benchmark[f"top_{k}_correct"] / benchmark["total_answerable"]) * 100 if benchmark["total_answerable"] > 0 else 0
+    benchmark["rejection_percent"] = (benchmark["rejection_correct"] / benchmark["total_unanswerable"]) * 100 if benchmark["total_unanswerable"] > 0 else 0
+
+    # Save results and benchmark
+    try:
+        with open(f"pgvector_{index_type}_results.json", "w") as f:
+            json.dump(results, f, indent=2)
+        with open(f"pgvector_{index_type}_benchmark.json", "w") as f:
+            json.dump(benchmark, f, indent=2)
+        logging.info(f"pgvector {index_type} results and benchmark saved")
+        print(f"pgvector {index_type} Results:", json.dumps(results, indent=2))
+        print(f"pgvector {index_type} Benchmark:", json.dumps(benchmark, indent=2))
+    except Exception as e:
+        logging.error(f"Saving pgvector {index_type} results failed: {e}")
+        raise e
+
+# Close connection
+try:
     cur.close()
     conn.close()
+    logging.info("Database connection closed")
+except Exception as e:
+    logging.error(f"Closing database connection failed: {e}")
